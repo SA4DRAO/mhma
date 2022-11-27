@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mhma">
+    package="com.faze.mhma">
    <application
         android:label="mhma"
         android:name="${applicationName}"
