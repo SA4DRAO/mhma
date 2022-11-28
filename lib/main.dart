@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mhma/constants/MaterialBlack.dart';
 import 'package:mhma/widgets/chat_analysis_card.dart';
@@ -5,8 +6,13 @@ import 'package:mhma/widgets/chip_widgets.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
 import 'package:mhma/widgets/trackmood_card.dart';
 import 'package:mhma/widgets/welcome_card.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
