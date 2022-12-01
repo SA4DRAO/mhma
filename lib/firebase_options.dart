@@ -14,7 +14,6 @@ import 'package:flutter/foundation.dart'
 ///   options: DefaultFirebaseOptions.currentPlatform,
 /// );
 /// ```
-
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -68,8 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1053670431296',
     projectId: 'mhma-faze',
     storageBucket: 'mhma-faze.appspot.com',
-    iosClientId:
-        '1053670431296-7u8qcppphrs7c3gqphu480rtvh4h8659.apps.googleusercontent.com',
+    androidClientId: '1053670431296-shalughcgnhv5323h0dm7ja3n422hk6c.apps.googleusercontent.com',
+    iosClientId: '1053670431296-7u8qcppphrs7c3gqphu480rtvh4h8659.apps.googleusercontent.com',
     iosBundleId: 'com.example.mhma',
   );
 
@@ -79,8 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1053670431296',
     projectId: 'mhma-faze',
     storageBucket: 'mhma-faze.appspot.com',
-    iosClientId:
-        '1053670431296-7u8qcppphrs7c3gqphu480rtvh4h8659.apps.googleusercontent.com',
+    androidClientId: '1053670431296-shalughcgnhv5323h0dm7ja3n422hk6c.apps.googleusercontent.com',
+    iosClientId: '1053670431296-7u8qcppphrs7c3gqphu480rtvh4h8659.apps.googleusercontent.com',
     iosBundleId: 'com.example.mhma',
   );
 }
