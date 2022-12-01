@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mhma/constants/material_black.dart';
 import 'package:mhma/provider/google_sign_in.dart';
 import 'package:mhma/screens/sign_in_screen.dart';
 import 'package:mhma/widgets/chat_analysis_card.dart';
+import 'package:mhma/widgets/chat_with_doctor_card.dart';
 import 'package:mhma/widgets/fitness_card.dart';
 import 'package:mhma/widgets/trackmood_card.dart';
 import 'package:mhma/widgets/welcome_card.dart';
@@ -24,8 +27,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => GoogleSignInProvider(),
+    // return ChangeNotifierProvider(
+    //   create: (context) => GoogleSignInProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: ((context) => GoogleSignInProvider()),
+        ),
+      ],
       child: MaterialApp(
         title: 'MHMA',
         debugShowCheckedModeBanner: false,
@@ -40,7 +49,12 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({
+    super.key,
+    required this.user,
+  });
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +82,7 @@ class HomePage extends StatelessWidget {
                 const MoodTrackCard(),
                 const ChatUploadCard(),
                 const FitnessCard(),
+                ChatWithDoctor(email: user.email!, uid: user.uid),
                 ElevatedButton(
                     onPressed: () {
                       final provider = Provider.of<GoogleSignInProvider>(
