@@ -46,11 +46,6 @@ class _FitnessDataScreenState extends State<FitnessDataScreen> {
                 } else {
                   Fluttertoast.showToast(
                       msg: "User did not provide sufficient permissions!");
-
-                  if (await Permission
-                      .activityRecognition.isPermanentlyDenied) {
-                    openAppSettings();
-                  }
                 }
               },
               child: Text("Get Fitness Data!"))
