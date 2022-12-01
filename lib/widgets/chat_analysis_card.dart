@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mhma/screens/chat_upload_screen.dart';
 import 'package:mhma/screens/meditation_screen.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
@@ -19,7 +20,17 @@ class ChatUploadCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            // padding:
+            //     EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            child: SvgPicture.asset(
+              'assets/chatUpload.svg',
+              height: 400,
+              width: 400,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: const Text(
               "Track your Chatting Mood",
               style: TextStyle(

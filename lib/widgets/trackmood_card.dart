@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mhma/screens/meditation_screen.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
 
@@ -18,7 +19,17 @@ class MoodTrackCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            // padding:
+            // EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            child: SvgPicture.asset(
+              'assets/relaxing.svg',
+              width: 400,
+              height: 400,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: const Text(
               "Discover our relaxing exercises",
               style: TextStyle(
