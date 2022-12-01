@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mhma/main.dart';
 import 'package:mhma/provider/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -15,11 +14,11 @@ class SignInScreen extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
-            return HomePage();
+            return const HomePage();
           } else {
-            return SignUpScreen();
+            return const SignUpScreen();
           }
         },
       ),
@@ -44,7 +43,7 @@ class SignUpScreen extends StatelessWidget {
                     Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.googleLogin();
               },
-              child: Text("Sign In With Google!"))
+              child: const Text("Sign In With Google!"))
         ],
       ),
     );

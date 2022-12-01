@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mhma/screens/meditation_screen.dart';
+import 'package:mhma/screens/view_fitness_data.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
 
-class MoodTrackCard extends StatelessWidget {
-  const MoodTrackCard({super.key});
+class FitnessCard extends StatelessWidget {
+  const FitnessCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class MoodTrackCard extends StatelessWidget {
             padding:
                 const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
             child: const Text(
-              "Discover our relaxing exercises",
+              "Check Your Fitness Data!",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -37,11 +38,11 @@ class MoodTrackCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MeditationScreen(),
+                        builder: (context) => const FitnessDataScreen(),
                       ),
                     );
                   },
-                  child: const TextPill(str: "Start Meditation"))),
+                  child: const TextPill(str: "Check Now"))),
         ],
       ),
     );
