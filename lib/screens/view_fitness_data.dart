@@ -42,7 +42,7 @@ class _FitnessDataScreenState extends State<FitnessDataScreen> {
                 if (status.isGranted) {
                   var midnight = DateTime(now.year, now.month, now.day);
                   steps = await health.getTotalStepsInInterval(midnight, now);
-                  print(steps);
+                  Fluttertoast.showToast(msg: "Steps: $steps");
                 } else {
                   Fluttertoast.showToast(
                       msg: "User did not provide sufficient permissions!");

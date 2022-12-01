@@ -40,18 +40,20 @@ class MoodTrackCard extends StatelessWidget {
             ),
           ),
           Container(
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 20, bottom: 20),
-              child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MeditationScreen(),
-                      ),
-                    );
-                  },
-                  child: const TextPill(str: "Start Meditation"))),
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MeditationScreen(),
+                  ),
+                );
+              },
+              child: const TextPill(str: "Start Meditation"),
+            ),
+          ),
         ],
       ),
     );
