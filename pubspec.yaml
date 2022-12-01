@@ -78,6 +78,8 @@ flutter:
     - assets/relaxing.svg
     - assets/chatUpload.svg
     - assets/mentalHealth.svg
+    - assets/fitness.svg
+    - assets/chatWithDoctor.svg
     - assets/google_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

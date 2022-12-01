@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mhma/screens/meditation_screen.dart';
 import 'package:mhma/screens/view_fitness_data.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
@@ -18,6 +19,16 @@ class FitnessCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            // padding:
+            // EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            child: SvgPicture.asset(
+              'assets/fitness.svg',
+              width: 400,
+              height: 400,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
           Container(
             padding:
                 const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
