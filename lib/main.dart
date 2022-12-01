@@ -1,11 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mhma/constants/MaterialBlack.dart';
+import 'package:mhma/provider/google_sign_in.dart';
+import 'package:mhma/screens/sign_in_screen.dart';
 import 'package:mhma/widgets/chat_analysis_card.dart';
 import 'package:mhma/widgets/chip_widgets.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
 import 'package:mhma/widgets/trackmood_card.dart';
 import 'package:mhma/widgets/welcome_card.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,14 +26,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'MHMA',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: false,
-        primarySwatch: primaryBlack,
+    return ChangeNotifierProvider(
+      create: (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        title: 'MHMA',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: false,
+          primarySwatch: primaryBlack,
+        ),
+        home: SignInScreen(),
       ),
-      home: const HomePage(),
     );
   }
 }
@@ -59,9 +66,17 @@ class HomePage extends StatelessWidget {
               ];
             },
             body: ListView(
-              children: const [
+              children: [
                 MoodTrackCard(),
                 ChatUploadCard(),
+                ElevatedButton(
+                    onPressed: () {
+                      final provider = Provider.of<GoogleSignInProvider>(
+                          context,
+                          listen: false);
+                      provider.logout();
+                    },
+                    child: Text("Log Out!"))
               ],
             )),
       ),

@@ -24,8 +24,11 @@ class ChatUploadScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () async {
-              result =
-                  await FilePicker.platform.pickFiles(allowMultiple: false);
+              result = await FilePicker.platform.pickFiles(
+                type: FileType.custom,
+                allowMultiple: false,
+                allowedExtensions: ['txt'],
+              );
             },
             child: Container(
               padding:
