@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mhma/constants/MaterialBlack.dart';
+import 'package:mhma/constants/material_black.dart';
 import 'package:mhma/provider/google_sign_in.dart';
 import 'package:mhma/screens/sign_in_screen.dart';
 import 'package:mhma/widgets/chat_analysis_card.dart';
-import 'package:mhma/widgets/chip_widgets.dart';
-import 'package:mhma/widgets/monochrome_pill_box.dart';
+import 'package:mhma/widgets/fitness_card.dart';
 import 'package:mhma/widgets/trackmood_card.dart';
 import 'package:mhma/widgets/welcome_card.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: false,
           primarySwatch: primaryBlack,
         ),
-        home: SignInScreen(),
+        home: const SignInScreen(),
       ),
     );
   }
@@ -67,8 +65,9 @@ class HomePage extends StatelessWidget {
             },
             body: ListView(
               children: [
-                MoodTrackCard(),
-                ChatUploadCard(),
+                const MoodTrackCard(),
+                const ChatUploadCard(),
+                const FitnessCard(),
                 ElevatedButton(
                     onPressed: () {
                       final provider = Provider.of<GoogleSignInProvider>(
@@ -76,7 +75,7 @@ class HomePage extends StatelessWidget {
                           listen: false);
                       provider.logout();
                     },
-                    child: Text("Log Out!"))
+                    child: const Text("Log Out!"))
               ],
             )),
       ),

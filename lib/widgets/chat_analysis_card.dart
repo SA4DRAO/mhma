@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mhma/screens/chat_upload_screen.dart';
-import 'package:mhma/screens/meditation_screen.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
 
 class ChatUploadCard extends StatelessWidget {
@@ -41,18 +40,18 @@ class ChatUploadCard extends StatelessWidget {
             ),
           ),
           Container(
-              padding:
-                  EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 20, bottom: 20),
               child: InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ChatUploadScreen(),
+                        builder: (context) => const ChatUploadScreen(),
                       ),
                     );
                   },
-                  child: TextPill(str: "Upload your chat!"))),
+                  child: const TextPill(str: "Upload your chat!"))),
         ],
       ),
     );

@@ -46,6 +46,9 @@ dependencies:
   provider: ^6.0.4
   firebase_auth: ^4.1.4
   flutter_svg: ^1.1.6
+  permission_handler: ^10.2.0
+  health: ^4.3.0
+  fluttertoast: ^8.1.1
 
 dev_dependencies:
   flutter_test:
