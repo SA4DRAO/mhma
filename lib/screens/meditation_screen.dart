@@ -15,7 +15,7 @@ class MeditationScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               isReverse: true,
-              textStyle: TextStyle(color: Colors.white),
+              textStyle: const TextStyle(color: Colors.white),
               width: 100,
               height: 100,
               duration: 10,
