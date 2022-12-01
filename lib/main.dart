@@ -8,6 +8,7 @@ import 'package:mhma/screens/sign_in_screen.dart';
 import 'package:mhma/widgets/chat_analysis_card.dart';
 import 'package:mhma/widgets/chat_with_doctor_card.dart';
 import 'package:mhma/widgets/fitness_card.dart';
+import 'package:mhma/widgets/mood_tracking_card.dart';
 import 'package:mhma/widgets/trackmood_card.dart';
 import 'package:mhma/widgets/welcome_card.dart';
 import 'package:provider/provider.dart';
@@ -66,9 +67,9 @@ class HomePage extends StatelessWidget {
             headerSliverBuilder:
                 (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
-                const SliverAppBar(
+                SliverAppBar(
                   expandedHeight: 160,
-                  floating: false,
+                  floating: true,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
                     background: WelcomeCard(),
@@ -82,6 +83,7 @@ class HomePage extends StatelessWidget {
                 const MoodTrackCard(),
                 const ChatUploadCard(),
                 const FitnessCard(),
+                Track_Mood_Card(email: user.email!, uid: user.uid),
                 ChatWithDoctor(email: user.email!, uid: user.uid),
                 ElevatedButton(
                     onPressed: () {
