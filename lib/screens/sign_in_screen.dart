@@ -34,7 +34,7 @@ class SignInScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
-            context.read<UserProvider>().setUser(snapshot.data);
+            // context.read<UserProvider>().setUser(snapshot.data);
             snapshot.data!;
             return HomePage(
               user: snapshot.data!,
