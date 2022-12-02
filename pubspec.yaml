@@ -54,6 +54,9 @@ dependencies:
   http: ^0.13.5
   dio: ^4.0.6
 
+  flutter_chat_ui: ^1.6.6
+  random_string: ^2.3.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
