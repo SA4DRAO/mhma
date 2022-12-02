@@ -32,6 +32,7 @@ class ChatUploadScreen extends StatefulWidget {
 
 class _ChatUploadScreenState extends State<ChatUploadScreen> {
   bool FileIsUploaded = false;
+  String analysisResult = "Upload Your Chat";
   @override
   Widget build(BuildContext context) {
     FilePickerResult? result;
@@ -43,13 +44,27 @@ class _ChatUploadScreenState extends State<ChatUploadScreen> {
         children: [
           SizedBox(
             height: 300,
+            width: MediaQuery.of(context).size.width,
             child: Container(
-              color: Colors.blue,
+              color: Colors.grey.shade600,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  analysisResult,
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
-          const Text(
-            "Upload your chat from WhatsApp!",
-            style: TextStyle(color: Colors.white),
+          Padding(
+            padding: EdgeInsets.only(top: 50, bottom: 30),
+            child: const Text(
+              "Upload your chat from WhatsApp!",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           InkWell(
             onTap: () async {
@@ -90,9 +105,6 @@ class _ChatUploadScreenState extends State<ChatUploadScreen> {
                 // } else {
                 //   print("ERROR");
                 // }
-                // setState(() {
-                //   FileIsUploaded = !FileIsUploaded;
-                // });
                 Response response;
                 var dio = Dio();
                 var formData = FormData.fromMap({
@@ -108,7 +120,13 @@ class _ChatUploadScreenState extends State<ChatUploadScreen> {
                   },
                 );
                 print(response);
+                analysisResult = response.toString();
+                print(analysisResult);
               }
+              setState(() {
+                FileIsUploaded = !FileIsUploaded;
+                analysisResult = analysisResult;
+              });
             },
             child: Container(
               padding:
