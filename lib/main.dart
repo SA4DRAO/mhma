@@ -85,14 +85,14 @@ class HomePage extends StatelessWidget {
                 const FitnessCard(),
                 Track_Mood_Card(email: user.email!, uid: user.uid),
                 ChatWithDoctor(email: user.email!, uid: user.uid),
-                ElevatedButton(
-                    onPressed: () {
-                      final provider = Provider.of<GoogleSignInProvider>(
-                          context,
-                          listen: false);
-                      provider.logout();
-                    },
-                    child: const Text("Log Out!"))
+                // ElevatedButton(
+                //     onPressed: () {
+                //       final provider = Provider.of<GoogleSignInProvider>(
+                //           context,
+                //           listen: false);
+                //       provider.logout();
+                //     },
+                //     child: const Text("Log Out!"))
               ],
             )),
       ),

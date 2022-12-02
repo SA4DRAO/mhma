@@ -37,9 +37,9 @@ class _Track_Mood_CardState extends State<Track_Mood_Card> {
             // padding:
             // EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
             child: SvgPicture.asset(
-              'assets/relaxing.svg',
+              'assets/moodTrack.svg',
               width: 400,
-              height: 400,
+              height: 250,
               fit: BoxFit.scaleDown,
             ),
           ),
