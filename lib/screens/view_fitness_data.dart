@@ -43,23 +43,25 @@ class _FitnessDataScreenState extends State<FitnessDataScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
-            child: FutureBuilder(builder: ((context, snapshot) {
-              if (fitness_data == null) {
-                return CircularProgressIndicator();
-              } else {
-                return ListView.builder(
+          FutureBuilder(builder: ((context, snapshot) {
+            if (fitness_data == null) {
+              return CircularProgressIndicator();
+            } else {
+              return Expanded(
+                child: ListView.builder(
                     itemCount: fitness_data.length,
                     itemBuilder: (context, index) {
+                      Fluttertoast.showToast(msg: "Steps: $steps");
+
                       return ListTile(
                         textColor: Colors.black,
                         tileColor: Colors.grey,
                         title: Text(fitness_data[index].toString()),
                       );
-                    });
-              }
-            })),
-          ),
+                    }),
+              );
+            }
+          })),
           Align(
             alignment: Alignment.center,
             child: ElevatedButton(
