@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:mhma/screens/profile_screen.dart';
 
 class WelcomeCard extends StatelessWidget {
-  const WelcomeCard({super.key});
+  WelcomeCard({
+    super.key,
+    required this.email,
+    required this.uid,
+    this.displayName,
+    this.photoUrl,
+  });
+  String? displayName = "";
+  String uid = "";
+  String email = "";
+  String? photoUrl = "";
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +41,12 @@ class WelcomeCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => const ProfilePage()),
+                        builder: ((context) => ProfilePage(
+                              email: email,
+                              uid: uid,
+                              displayName: displayName,
+                              photoUrl: photoUrl,
+                            )),
                       ),
                     )
                   },

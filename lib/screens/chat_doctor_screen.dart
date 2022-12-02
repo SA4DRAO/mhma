@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -38,23 +39,22 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   var db = FirebaseFirestore.instance;
   final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
-
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
-  final List<types.Message> _messages = [];
+  final List<types.Message> messages = [];
 
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Chat(
-          messages: _messages,
+          messages: messages,
           onSendPressed: _handleSendPressed,
           user: _user,
         ),
       );
 
-  void _addMessage(types.Message message) {
+  void _addMessage(types.Message message) async {
     setState(() {
-      _messages.insert(0, message);
+      messages.insert(0, message);
     });
   }
 
