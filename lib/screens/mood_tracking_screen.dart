@@ -13,12 +13,15 @@ class MoodTrackScreen extends StatefulWidget {
   String uid = "";
   String email = "";
   String? photoUrl = "";
+
   @override
   State<MoodTrackScreen> createState() => _MoodTrackScreenState();
 }
 
 class _MoodTrackScreenState extends State<MoodTrackScreen> {
   var db = FirebaseFirestore.instance;
+  final CollectionReference docdb =
+      FirebaseFirestore.instance.collection('moods');
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +31,53 @@ class _MoodTrackScreenState extends State<MoodTrackScreen> {
       body: Column(
         children: [
           SizedBox(
-            height: 300,
-            child: Container(
-              color: Colors.blue,
-            ),
-          ),
+              height: 300,
+              child: StreamBuilder(
+                stream: docdb.orderBy('createDate').snapshots(),
+                builder:
+                    (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                  if (streamSnapshot.hasData) {
+                    if (streamSnapshot.data!.size <= 7) {
+                      return ListView.builder(
+                          itemCount: streamSnapshot.data!.size,
+                          itemBuilder: (context, index) {
+                            final DocumentSnapshot documentSnapshot =
+                                streamSnapshot.data!.docs[index];
+
+                            return Card(
+                              child: ListTile(
+                                title:
+                                    Text(documentSnapshot['mood'].toString()),
+                              ),
+                            );
+                          });
+                    } else {
+                      return ListView.builder(
+                          itemCount: 7,
+                          itemBuilder: (context, index) {
+                            final DocumentSnapshot documentSnapshot =
+                                streamSnapshot.data!.docs[index];
+                            return Card(
+                              child: ListTile(
+                                title:
+                                    Text(documentSnapshot['mood'].toString()),
+                              ),
+                            );
+                          });
+                    }
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              )),
           InkWell(
             onTap: () {
-              db.collection("moods").add(<String, dynamic>{
+              docdb.add(<String, dynamic>{
                 "mood": 1,
-                "uid": widget.uid,
+                "uid": widget.email,
+                "createDate": DateTime.now().microsecondsSinceEpoch,
               }).then((DocumentReference doc) => print("Pushed to Firestore"));
             },
             child: Container(
@@ -63,9 +103,10 @@ class _MoodTrackScreenState extends State<MoodTrackScreen> {
           ),
           InkWell(
             onTap: () {
-              db.collection("moods").add(<String, dynamic>{
+              docdb.add(<String, dynamic>{
                 "mood": 2,
-                "uid": widget.uid,
+                "uid": widget.email,
+                "createDate": DateTime.now().microsecondsSinceEpoch,
               }).then((DocumentReference doc) => print("Pushed to Firestore"));
             },
             child: Container(
@@ -91,9 +132,10 @@ class _MoodTrackScreenState extends State<MoodTrackScreen> {
           ),
           InkWell(
             onTap: () {
-              db.collection("moods").add(<String, dynamic>{
+              docdb.add(<String, dynamic>{
                 "mood": 3,
-                "uid": widget.uid,
+                "uid": widget.email,
+                "createDate": DateTime.now().microsecondsSinceEpoch,
               }).then((DocumentReference doc) => print("Pushed to Firestore"));
             },
             child: Container(

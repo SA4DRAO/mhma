@@ -72,7 +72,12 @@ class HomePage extends StatelessWidget {
                   floating: true,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: WelcomeCard(),
+                    background: WelcomeCard(
+                      email: user.email!,
+                      uid: user.uid,
+                      displayName: user.displayName,
+                      photoUrl: user.photoURL,
+                    ),
                     centerTitle: true,
                   ),
                 ),

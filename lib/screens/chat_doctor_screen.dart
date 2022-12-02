@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mhma/constants/material_black.dart';
@@ -9,14 +11,13 @@ import 'package:mhma/widgets/fitness_card.dart';
 import 'package:mhma/widgets/trackmood_card.dart';
 import 'package:mhma/widgets/welcome_card.dart';
 import 'package:provider/provider.dart';
+import 'package:random_string/random_string.dart';
 import '../firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-final message = <String, dynamic>{
-  "creatdate": DateTime.now(),
-  "message": "This is a test",
-  "uid": "another_test",
-};
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'dart:convert';
+import 'dart:math';
 
 class ChatScreen extends StatefulWidget {
   ChatScreen({
@@ -37,23 +38,34 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   var db = FirebaseFirestore.instance;
+  final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('users').snapshots();
+  final List<types.Message> messages = [];
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Colors.black,
-      body: ListView(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              db.collection("chats").add(message).then(
-                  (DocumentReference doc) => print("Pushed to Firestore"));
-            },
-            child: Text('${widget.email}'),
-          )
-        ],
-      ),
+  Widget build(BuildContext context) => Scaffold(
+        body: Chat(
+          messages: messages,
+          onSendPressed: _handleSendPressed,
+          user: _user,
+        ),
+      );
+
+  void _addMessage(types.Message message) async {
+    setState(() {
+      messages.insert(0, message);
+    });
+  }
+
+  void _handleSendPressed(types.PartialText message) {
+    final textMessage = types.TextMessage(
+      author: _user,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: randomString(5),
+      text: message.text,
     );
+
+    _addMessage(textMessage);
   }
 }
