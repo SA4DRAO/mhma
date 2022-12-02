@@ -53,7 +53,6 @@ dependencies:
   file_picker: ^5.2.3
   flutter_chat_ui: ^1.6.6
   random_string: ^2.3.1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

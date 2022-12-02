@@ -3,9 +3,23 @@ import 'package:provider/provider.dart';
 
 import '../provider/google_sign_in.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  ProfilePage({
+    super.key,
+    required this.email,
+    required this.uid,
+    this.displayName,
+    this.photoUrl,
+  });
+  String? displayName = "";
+  String uid = "";
+  String email = "";
+  String? photoUrl = "";
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
 
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -41,13 +55,13 @@ class ProfilePage extends StatelessWidget {
                 height: 10,
               ),
               SizedBox(
-                width: size.width * .3,
+                width: size.width * .25,
                 child: Row(
                   children: [
                     Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'John Doe',
+                          widget.displayName!,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -57,7 +71,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               Text(
-                'johndoe@gmail.com',
+                widget.email,
                 style: TextStyle(
                   color: Colors.white,
                 ),
