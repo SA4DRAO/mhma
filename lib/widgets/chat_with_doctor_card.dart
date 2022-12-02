@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mhma/screens/chat_doctor_screen.dart';
 import 'package:mhma/screens/chat_upload_screen.dart';
 import 'package:mhma/widgets/monochrome_pill_box.dart';
@@ -27,6 +28,17 @@ class ChatWithDoctor extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            alignment: Alignment.center,
+            // padding:
+            // EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            child: SvgPicture.asset(
+              'assets/chatWithDoctor.svg',
+              width: 450,
+              height: 300,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
           Container(
             padding:
                 const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
