@@ -29,64 +29,33 @@ class _FitnessDataScreenState extends State<FitnessDataScreen> {
   ];
   var now = DateTime.now();
   int? steps;
-  List<dynamic>? data;
-  List<int> fitness_data = [];
-  var heart_rate;
-  var step_count;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      backgroundColor: Colors.black,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          FutureBuilder(builder: ((context, snapshot) {
-            if (fitness_data == null) {
-              return CircularProgressIndicator();
-            } else {
-              return Expanded(
-                child: ListView.builder(
-                    itemCount: fitness_data.length,
-                    itemBuilder: (context, index) {
-                      Fluttertoast.showToast(msg: "Steps: $steps");
+          ElevatedButton(
+              onPressed: () async {
+                var status = await Permission.activityRecognition.request();
 
-                      return ListTile(
-                        textColor: Colors.black,
-                        tileColor: Colors.grey,
-                        title: Text(fitness_data[index].toString()),
-                      );
-                    }),
-              );
-            }
-          })),
-          Align(
-            alignment: Alignment.center,
-            child: ElevatedButton(
-                onPressed: () async {
-                  var status = await Permission.activityRecognition.request();
-                  bool requested = await health.requestAuthorization(types);
-                  if (status.isGranted) {
-                    var midnight = DateTime(now.year, now.month, now.day);
-                    steps = await health.getTotalStepsInInterval(midnight, now);
-                    // data = await health.getHealthDataFromTypes(
-                    //     midnight, now, types);
-                    // heart_rate = data![0];
-                    // step_count = data![1];
-                    // fitness_data.add(steps!);
-                    print(step_count);
-                  } else {
-                    Fluttertoast.showToast(
-                        msg: "User did not provide sufficient permissions!");
+                bool requested = await health.requestAuthorization(types);
+                if (status.isGranted) {
+                  var midnight = DateTime(now.year, now.month, now.day);
+                  steps = await health.getTotalStepsInInterval(midnight, now);
+                  print(steps);
+                  Fluttertoast.showToast(msg: "Steps: $steps");
+                } else {
+                  Fluttertoast.showToast(
+                      msg: "User did not provide sufficient permissions!");
+
+                  if (await Permission
+                      .activityRecognition.isPermanentlyDenied) {
+                    openAppSettings();
                   }
-                  setState(() {
-                    steps = steps;
-                  });
-                },
-                child: TextPill(str: "Get Fitness Data")),
-          )
+                }
+              },
+              child: Text("Get Fitness Data!"))
         ],
       ),
     );
