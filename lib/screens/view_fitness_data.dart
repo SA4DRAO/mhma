@@ -71,16 +71,19 @@ class _FitnessDataScreenState extends State<FitnessDataScreen> {
                   if (status.isGranted) {
                     var midnight = DateTime(now.year, now.month, now.day);
                     steps = await health.getTotalStepsInInterval(midnight, now);
-                    data = await health.getHealthDataFromTypes(
-                        midnight, now, types);
-                    heart_rate = data![0];
-                    step_count = data![1];
-                    fitness_data.add(steps!);
+                    // data = await health.getHealthDataFromTypes(
+                    //     midnight, now, types);
+                    // heart_rate = data![0];
+                    // step_count = data![1];
+                    // fitness_data.add(steps!);
                     print(step_count);
                   } else {
                     Fluttertoast.showToast(
                         msg: "User did not provide sufficient permissions!");
                   }
+                  setState(() {
+                    steps = steps;
+                  });
                 },
                 child: TextPill(str: "Get Fitness Data")),
           )

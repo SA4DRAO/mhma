@@ -36,6 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
           width: size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 width: 150,
@@ -55,7 +56,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 10,
               ),
               SizedBox(
-                width: size.width * .25,
                 child: Row(
                   children: [
                     Align(
